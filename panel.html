@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="js/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/lib/less.min.js"></script>
+    <script type="text/javascript" src="js/lib/webcomponents.min.js"></script>
+    <script type="text/javascript" src="js/lib/juicy-ace-editor/ace/src-min-noconflict/ace.js" ></script>
+    <link rel="stylesheet" type="text/css" href="css/panel.css">
+</head>    
+<body>
+    <div class="Container">
+        <div id="panel" class="left">
+            <div class="title">
+                <span>Settings</span>
+            </div>
+            <label for="type" >Language </label>
+            <select id="type">
+                <option code="CSS">CSS</option>
+                <option code="LESS">LESS</option>
+            </select>
+            <br/>
+            <a id="send" class="devBtn">Enviar!!</a>
+            <div><span id="error"></span></div>    
+        </div>
+        <div class="middle">
+            <juicy-ace-editor id="code" theme="ace/theme/chrome" mode="ace/mode/css" fontsize="" readonly="" softtabs="true" tabsize="">
+                <template>
+                    <content></content>
+                </template>
+            </juicy-ace-editor>
+        </div>
+        <div class="right" style="display:none">
+            <juicy-ace-editor id="codeCompiled" theme="ace/theme/chrome" mode="ace/mode/css" fontsize="" readonly="" softtabs="true" tabsize="">
+                <template>
+                    <content></content>
+                </template>
+            </juicy-ace-editor>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/lib/editor.js"></script>
+    <script type="text/javascript" src="js/panel.js"></script>
+</body>
+
+</html>
