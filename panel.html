@@ -1,44 +1,55 @@
-<html>
 
-<head>
-    <script type="text/javascript" src="js/lib/jquery-2.1.4.min.js"></script>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--script(type="text/javascript", src="js/lib/jquery-2.1.4.min.js")-->
     <script type="text/javascript" src="js/lib/less.min.js"></script>
     <script type="text/javascript" src="js/lib/webcomponents.min.js"></script>
-    <script type="text/javascript" src="js/lib/juicy-ace-editor/ace/src-min-noconflict/ace.js" ></script>
-    <link rel="stylesheet" type="text/css" href="css/panel.css">
-</head>    
-<body>
-    <div class="Container">
-        <div id="panel" class="left">
-            <div class="title">
-                <span>Settings</span>
-            </div>
-            <label for="type" >Language </label>
-            <select id="type">
-                <option code="CSS">CSS</option>
-                <option code="LESS">LESS</option>
-            </select>
-            <br/>
-            <a id="send" class="devBtn">Enviar!!</a>
-            <div><span id="error"></span></div>    
+    <script type="text/javascript" src="js/lib/juicy-ace-editor/ace/src-min-noconflict/ace.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/panel.css"/>
+  </head>
+  <body>
+    <div id="leftPanel">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header"><span class="navbar-brand">Options</span></div>
+          <div id="panelIcon" class="navbar-right"><span id="left" class="navbar-right glyphicon glyphicon-chevron-left"></span><span id="right" class="navbar-right glyphicon glyphicon-chevron-right"></span></div>
         </div>
-        <div class="middle">
-            <juicy-ace-editor id="code" theme="ace/theme/chrome" mode="ace/mode/css" fontsize="" readonly="" softtabs="true" tabsize="">
-                <template>
-                    <content></content>
-                </template>
-            </juicy-ace-editor>
+      </nav>
+      <form>
+        <div class="form-group">
+          <label for="language">Language</label>
+          <select id="language" class="form-control">
+            <option value="css">CSS</option>
+            <option value="less">LESS</option>
+            <!--option(value="sass")| SASS-->
+            <!--option(value="staylus")| Staylus-->
+          </select>
+        </div><a id="send" class="btn btn-default">Insert</a>
+      </form>
+    </div>
+    <div id="content">
+      <div id="files" class="breadcrumb"></div>
+      <div id="editors" data-dede="dasdas">
+        <div id="editor">
+          <juicy-ace-editor theme="ace/theme/chrome" mode="ace/mode/css" softtabs="true" class="code">
+            <template>
+              <content></content>
+            </template>
+          </juicy-ace-editor>
         </div>
-        <div class="right" style="display:none">
-            <juicy-ace-editor id="codeCompiled" theme="ace/theme/chrome" mode="ace/mode/css" fontsize="" readonly="" softtabs="true" tabsize="">
-                <template>
-                    <content></content>
-                </template>
-            </juicy-ace-editor>
+        <div id="result" class="hidden">
+          <juicy-ace-editor theme="ace/theme/chrome" mode="ace/mode/css" softtabs="true" class="codeCompiled">
+            <template>
+              <content></content>
+            </template>
+          </juicy-ace-editor>
         </div>
+      </div>
     </div>
     <script type="text/javascript" src="js/lib/editor.js"></script>
     <script type="text/javascript" src="js/panel.js"></script>
-</body>
-
+  </body>
 </html>

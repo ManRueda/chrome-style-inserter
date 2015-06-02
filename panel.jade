@@ -1,0 +1,44 @@
+html
+  head
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    //script(type="text/javascript", src="js/lib/jquery-2.1.4.min.js")
+    script(type="text/javascript", src="js/lib/less.min.js")
+    script(type="text/javascript", src="js/lib/webcomponents.min.js")
+    script(type="text/javascript", src="js/lib/juicy-ace-editor/ace/src-min-noconflict/ace.js")
+    link(rel="stylesheet", type="text/css", href="css/lib/bootstrap-theme.min.css")
+    link(rel="stylesheet", type="text/css", href="css/lib/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="css/panel.css")
+  body
+    div#leftPanel
+      nav.navbar.navbar-default
+        div.container-fluid
+          div.navbar-header
+            span.navbar-brand
+              | Options
+          div.navbar-right#panelIcon
+            span#left.navbar-right.glyphicon.glyphicon-chevron-left
+            span#right.navbar-right.glyphicon.glyphicon-chevron-right
+      form
+        div.form-group
+          label(for="language")
+            | Language
+          select(id="language").form-control
+            option(value="css")| CSS
+            option(value="less")| LESS
+            //option(value="sass")| SASS
+            //option(value="staylus")| Staylus
+        a.btn.btn-default#send| Insert
+
+    div#content
+      div#files.breadcrumb
+      div#editors(data-dede="dasdas")
+        div#editor
+          juicy-ace-editor.code(theme="ace/theme/chrome",  mode="ace/mode/css", softtabs="true")
+            template
+              content
+        div#result.hidden
+          juicy-ace-editor.codeCompiled(theme="ace/theme/chrome",  mode="ace/mode/css", softtabs="true")
+            template
+              content
+    script(type="text/javascript", src="js/lib/editor.js")
+    script(type="text/javascript", src="js/panel.js")
