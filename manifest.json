@@ -1,6 +1,6 @@
 {
-    "name": "chrome-style-inserter",
-    "short_name": "Chrome style inserter",
+    "name": "Chrome Style Inserter",
+    "short_name": "chrome-style-inserter",
     "version": "0.3.0",
     "minimum_chrome_version": "40.0",
     "devtools_page": "devtools.html",
