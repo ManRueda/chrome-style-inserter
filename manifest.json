@@ -1,12 +1,15 @@
 {
     "name": "chrome-style-inserter",
-    "version": "0.2",
+    "short_name": "Chrome style inserter",
+    "version": "0.3.0",
     "minimum_chrome_version": "40.0",
     "devtools_page": "devtools.html",
     "manifest_version": 2,
     "description": "Use the Style Inserter panel to insert stlye on the fly",
     "author": "Manuel Rueda",
-    "permissions": [
-      "downloads"
-    ]
+    "icons":{
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
 }
