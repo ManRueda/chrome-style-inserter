@@ -4,6 +4,7 @@ html
     //script(type="text/javascript", src="js/lib/jquery-2.1.4.min.js")
     script(type="text/javascript", src="js/lib/less.min.js")
     script(type="text/javascript", src="js/lib/webcomponents.min.js")
+    script(type="text/javascript", src="js/lib/Blob.js")
     script(type="text/javascript", src="js/lib/juicy-ace-editor/ace/src-min-noconflict/ace.js")
     link(rel="stylesheet", type="text/css", href="css/lib/bootstrap-theme.min.css")
     link(rel="stylesheet", type="text/css", href="css/lib/bootstrap.min.css")
@@ -27,7 +28,12 @@ html
             option(value="less")| LESS
             //option(value="sass")| SASS
             //option(value="staylus")| Staylus
-        a.btn.btn-default#send| Insert
+        div.form-group
+          a.btn.btn-default#send| Insert
+        div.form-group
+          a.btn.btn-default#downloadCode(data-template="Download {0}").hidden
+        div.form-group
+          a.btn.btn-default#downloadCSS| Download CSS
 
     div#content
       div#files.breadcrumb
@@ -40,5 +46,6 @@ html
           juicy-ace-editor.codeCompiled(theme="ace/theme/chrome",  mode="ace/mode/css", softtabs="true")
             template
               content
+        div.error.hidden
     script(type="text/javascript", src="js/lib/editor.js")
     script(type="text/javascript", src="js/panel.js")

@@ -5,6 +5,7 @@
     <!--script(type="text/javascript", src="js/lib/jquery-2.1.4.min.js")-->
     <script type="text/javascript" src="js/lib/less.min.js"></script>
     <script type="text/javascript" src="js/lib/webcomponents.min.js"></script>
+    <script type="text/javascript" src="js/lib/Blob.js"></script>
     <script type="text/javascript" src="js/lib/juicy-ace-editor/ace/src-min-noconflict/ace.js"></script>
     <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css"/>
@@ -27,7 +28,10 @@
             <!--option(value="sass")| SASS-->
             <!--option(value="staylus")| Staylus-->
           </select>
-        </div><a id="send" class="btn btn-default">Insert</a>
+        </div>
+        <div class="form-group"><a id="send" class="btn btn-default">Insert</a></div>
+        <div class="form-group"><a id="downloadCode" data-template="Download {0}" class="btn btn-default hidden"></a></div>
+        <div class="form-group"><a id="downloadCSS" download="style.css" class="btn btn-default">Download CSS</a></div>
       </form>
     </div>
     <div id="content">
@@ -47,6 +51,7 @@
             </template>
           </juicy-ace-editor>
         </div>
+        <div class="error hidden"></div>
       </div>
     </div>
     <script type="text/javascript" src="js/lib/editor.js"></script>

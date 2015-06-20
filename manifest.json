@@ -1,7 +1,12 @@
 {
-    "name": "LESSInserter",
-    "version": "0.1",
+    "name": "chrome-style-inserter",
+    "version": "0.2",
     "minimum_chrome_version": "40.0",
     "devtools_page": "devtools.html",
-    "manifest_version": 2
+    "manifest_version": 2,
+    "description": "Use the Style Inserter panel to insert stlye on the fly",
+    "author": "Manuel Rueda",
+    "permissions": [
+      "downloads"
+    ]
 }

@@ -1,32 +1,57 @@
 //DOM 
-var panel = document.querySelector('#leftPanel');
-document.querySelector('#leftPanel .container-fluid').addEventListener('click', function() {
+$ = function(a){return document.querySelector(a);};
+
+var panel = $('#leftPanel');
+$('#leftPanel .container-fluid').addEventListener('click', function() {
     if (panel.classList.contains('close'))
         panel.classList.remove('close');
     else
         panel.classList.add('close');
 });
 
-document.querySelector('#language').addEventListener('change', function() {
+$('#language').addEventListener('change', function() {
     if (this.value !== 'css') {
-        document.querySelector('#result').classList.remove('hidden');
-    } else {
-        document.querySelector('#result').classList.add('hidden');
-    }
-    var inserter = StyleInserter.get(document.querySelector('#editors').dataset.styleInserterID);
+        $('#result').classList.remove('hidden');
 
+
+
+        $('#downloadCode').classList.remove('hidden');
+        $('#downloadCode').textContent = $('#downloadCode').dataset.template.replace('{0}', $('#language').selectedOptions[0].textContent);
+        $('#downloadCode').download = 'style.' + $('#language').selectedOptions[0].textContent;
+
+    } else {
+        $('#result').classList.add('hidden');
+        $('#downloadCode').classList.add('hidden');
+    }
+    var inserter = StyleInserter.get($('#editors').dataset.styleInserterID);
+
+    inserter.editor.querySelector('.code').editor.session.setMode('ace/mode/' + this.value);
     inserter.type = this.value;
 });
 
-document.querySelector('#send').addEventListener('click', function() {
-    var inserter = StyleInserter.get(document.querySelector('#editors').dataset.styleInserterID);
+$('#send').addEventListener('click', function() {
+    var inserter = StyleInserter.get($('#editors').dataset.styleInserterID);
 
     inserter.compile(function(css) {
         if (inserter.type !== 'css') {
-            inserter.copyCompiled()
+            inserter.copyCompiled();
             inserter.insertStyle(function() {}, false);
         }
     });
+});
+
+$('#downloadCode').addEventListener('click', function(event){
+    var inserter = StyleInserter.get($('#editors').dataset.styleInserterID);
+    inserter.download(false);
+});
+
+$('#downloadCSS').addEventListener('click', function(event){
+    var inserter = StyleInserter.get($('#editors').dataset.styleInserterID);
+    inserter.download(true);
+});
+
+$('.error').addEventListener('click', function() {
+    this.classList.add('hidden');
 });
 
 
@@ -37,18 +62,30 @@ function StyleInserter(editor) {
     that.id = StyleInserter._inserted.length + 1;
     that.type = 'css';
     that.preCompiled = '';
-    that.css = ''
+    that.css = '';
     that.editor = editor;
     that.autoInsert = true;
     editor.dataset.styleInserterID = that.id;
     this.showError = function(err) {
-
+        this.editor.querySelector('.error').textContent = JSON.stringify(err);
+        this.editor.querySelector('.error').classList.remove('hidden');
         return this;
-    }
+    };
     this.clearError = function() {
-
+        this.editor.querySelector('.error').classList.add('hidden');
         return this;
-    }
+    };
+    this.download = function(css){
+        var link = document.createElement('a');
+        if (css){
+            link.download = 'style.css';
+            link.href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(this.css);
+        }else{
+            link.download = 'style.' + this.type.toLocaleLowerCase();
+            link.href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(this.preCompiled);
+        }
+        link.click();
+    };
     this.compile = function(cb) {
         var that = this;
         that.clearError();
@@ -67,7 +104,7 @@ function StyleInserter(editor) {
         }
 
         return that;
-    }
+    };
     this.insertStyle = function(cb, compile) {
         var that = this;
         if (that.type === 'css' || !compile) {
@@ -75,10 +112,10 @@ function StyleInserter(editor) {
         } else {
             that.compile(function() {
                 that.sendScript(that.getInsertScript(), cb);
-            })
+            });
         }
         return that;
-    }
+    };
 
     this.getInsertScript = function() {
         var template = (function() {
@@ -96,11 +133,11 @@ function StyleInserter(editor) {
             }
             tag.dataset.lessinserter = true;
             tag.dataset.id = '##ID##';
-            document.querySelector('head').appendChild(tag)
+            document.querySelector('head').appendChild(tag);
         });
-        template = template.toString().split('##ID##').join(this.id).split('##CSS##').join(this.css.replace(/\r?\n|\r/g, "").trim())
+        template = template.toString().split('##ID##').join(this.id).split('##CSS##').join(this.css.replace(/\r?\n|\r/g, "").trim());
         return '(' + template + ')();';
-    }
+    };
 
     this.sendScript = function(script, cb) {
         var that = this;
@@ -114,19 +151,19 @@ function StyleInserter(editor) {
             });
         }
         return that;
-    }
+    };
 
     this.copyCompiled = function(){
         this.editor.querySelector('.codeCompiled').editor.setValue(this.css);
-    }
+    };
 
     function sanitizeString(str) {
-        return str.replace(/\\'/g, '\'').replace(/'/g, '\\\'').trim()
+        return str.replace(/\\'/g, '\'').replace(/'/g, '\\\'').trim();
     }
 
     //DOM Events
     that.editor.querySelector('.code').addEventListener('keyup', function(argument) {
-        var style = sanitizeString(this.editor.getValue().replace(/\r?\n|\r/g, ""));;
+        var style = sanitizeString(this.editor.getValue().replace(/\r?\n|\r/g, ""));
         if (that.type !== 'css') {
             that.preCompiled = style;
         } else {
@@ -138,7 +175,7 @@ function StyleInserter(editor) {
         }
         that.compile(function(css) {
             if (that.type !== 'css') {
-                that.copyCompiled()
+                that.copyCompiled();
                 if (that.autoInsert) {
                     that.insertStyle(function() {
 
@@ -154,4 +191,4 @@ StyleInserter.get = function(id) {
     return this._inserted.filter(function(element) {
         return element.id === Number(id);
     })[0];
-}
+};
