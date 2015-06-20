@@ -9,7 +9,7 @@ With this chrome extension you can add styles dynamically when you debug a site 
     * Style download
 
 ###Thanks!!
-* Thanks to [Juicy](https://github.com/Juicy) for the editor [juicy-ace-editor](https://github.com/Juicy/juicy-ace-editor)
+* Thanks to Cloud9 for the editor [Ace](http://ace.c9.io/)
 
 ##License
 [MIT License](http://opensource.org/licenses/MIT)
