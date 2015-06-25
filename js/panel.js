@@ -1,4 +1,4 @@
-//DOM 
+//DOM
 $ = function(a){return document.querySelector(a);};
 
 var panel = $('#leftPanel');
@@ -35,8 +35,8 @@ $('#send').addEventListener('click', function() {
     inserter.compile(function(css) {
         if (inserter.type !== 'css') {
             inserter.copyCompiled();
-            inserter.insertStyle(function() {}, false);
         }
+        inserter.insertStyle(function() {}, false);
     });
 });
 
@@ -100,7 +100,7 @@ function StyleInserter(editor) {
                 }
             }, {});
         } else {
-            cb();
+            cb(that.css);
         }
 
         return that;
@@ -176,11 +176,10 @@ function StyleInserter(editor) {
         that.compile(function(css) {
             if (that.type !== 'css') {
                 that.copyCompiled();
-                if (that.autoInsert) {
-                    that.insertStyle(function() {
-
-                    }, false);
-                }
+            }
+            if (that.autoInsert) {
+                that.insertStyle(function() {
+                }, false);
             }
         });
     });
