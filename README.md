@@ -4,6 +4,9 @@ With this chrome extension you can add styles dynamically when you debug a site 
 
 ###Versions
 
+* 0.3.6:
+    * String parse error
+
 * 0.3.5:
     * Grunt build
     * Minor fix
