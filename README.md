@@ -2,7 +2,21 @@
 
 With this chrome extension you can add styles dynamically when you debug a site with the dev-tools
 
-###Versions
+###Contribute
+* Clone the repo
+* Install dependencies
+```bash
+npm install
+bower install
+```
+* Make you changes
+* Build
+```bash
+grunt compile:build
+```
+* Make the pull request
+
+###Change Log
 * 0.4.0:
     * Update LESS
     * Change local code to bower components
