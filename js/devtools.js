@@ -1,2 +1,2 @@
-chrome.devtools.panels.create("LESS Inserter", null, "panel.html", function(sidebar) {
+chrome.devtools.panels.create("Style Inserter", null, "panel.html", function(sidebar) {
 });
