@@ -158,7 +158,7 @@ function StyleInserter(editor) {
     };
 
     function sanitizeString(str) {
-        return str.replace(/\\'/g, '\'').replace(/'/g, '\\\'').replace(/"/g, '\"').trim();
+        return str.replace(/\\'/g, '\'').replace(/'/g, '\\\'').replace(/"/g, '\\"').trim();
     }
 
     //DOM Events
