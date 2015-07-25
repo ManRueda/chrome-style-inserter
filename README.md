@@ -17,13 +17,14 @@ grunt compile:build
 * Make the pull request
 
 ###Change Log
-* 0.4.0:
+* 0.4.1:
     * Update LESS
     * Change local code to bower components
     * Add SASS support
     * Minor JS changes
     * New error alert
     * New build system, better compress!
+    * Font size feature
 * 0.3.8:
     * Error fixes
 
