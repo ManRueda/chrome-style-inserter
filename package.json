@@ -1,6 +1,6 @@
 {
   "name": "chrome-style-inserter",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Use the Style Inserter panel to insert stlye on the fly",
   "main": "js/panel.js",
   "scripts": {
