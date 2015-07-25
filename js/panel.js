@@ -9,6 +9,8 @@ sass.options({
   indent: '  ',
 }, function callback(){});
 var panel = $('#leftPanel');
+$('.code').editor.setFontSize(15);
+$('.codeCompiled').editor.setFontSize(15);
 
 $('#leftPanel .container-fluid').addEventListener('click', function() {
   if (panel.classList.contains('close'))
@@ -60,6 +62,13 @@ $('#downloadCSS').addEventListener('click', function(event) {
 
 $('.error').addEventListener('click', function() {
   this.classList.add('hidden');
+});
+
+$('#fontSize').addEventListener('change', function() {
+  if (isNaN(Number(this.value)))
+    return;
+  $('.code').editor.setFontSize(Number(this.value));
+  $('.codeCompiled').editor.setFontSize(Number(this.value));
 });
 
 
