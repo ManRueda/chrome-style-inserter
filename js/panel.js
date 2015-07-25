@@ -135,7 +135,7 @@ function StyleInserter(editor) {
             tag.dataset.id = '##ID##';
             document.querySelector('head').appendChild(tag);
         });
-        template = template.toString().split('##ID##').join(this.id).split('##CSS##').join(this.css.replace(/\r?\n|\r/g, "").trim());
+        template = template.toString().split('##ID##').join(this.id).split('##CSS##').join(sanitizeString(this.css).replace(/\r?\n|\r/g, "").trim());
         return '(' + template + ')();';
     };
 
@@ -163,7 +163,7 @@ function StyleInserter(editor) {
 
     //DOM Events
     that.editor.querySelector('.code').addEventListener('keyup', function(argument) {
-        var style = sanitizeString(this.editor.getValue().replace(/\r?\n|\r/g, ""));
+        var style = this.editor.getValue().replace(/\r?\n|\r/g, "");
         if (that.type !== 'css') {
             that.preCompiled = style;
         } else {
