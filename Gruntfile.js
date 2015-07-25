@@ -18,9 +18,11 @@ module.exports = function(grunt) {
     copy: {
       build: {
         files: [
-          {expand: true, src: ['js/lib/**'], dest: 'dist/'},
-          {expand: true, src: ['css/lib/**'], dest: 'dist/'},
-          {expand: true, src: ['css/fonts/**'], dest: 'dist/'},
+          {expand: true, src: ['components/less.js/dist/**'], dest: 'dist/'},
+          {expand: true, src: ['components/sass.js/dist/**'], dest: 'dist/'},
+          {expand: true, src: ['components/juicy-ace-editor/ace/**'], dest: 'dist/'},
+          {expand: true, src: ['components/bootstrap/dist/**', '!components/bootstrap/dist/**/*.map'], dest: 'dist/'},
+          {expand: true, src: ['components/webcomponentsjs/**/*.min.js'], dest: 'dist/'},
           {expand: true, src: ['manifest.json', 'icon*'], dest: 'dist/'}
         ]
       }
@@ -78,6 +80,10 @@ module.exports = function(grunt) {
     },
     jshint: {
       all: ['Gruntfile.js', 'js/*.js']
+    },
+    clean: {
+      preRelease: ["extension.zip"],
+      release: ["dist"]
     }
   });
 
@@ -88,6 +94,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
 
   grunt.registerTask('default', ['uglify']);
@@ -97,6 +104,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint']);
 
-  grunt.registerTask('release', ['test', 'compile:build', 'compress:build']);
+  grunt.registerTask('release', ['test', 'compile:build', 'clean:preRelease', 'compress:build', 'clean:release']);
 
 };

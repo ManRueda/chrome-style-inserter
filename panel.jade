@@ -2,12 +2,16 @@
 html
   head
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    //script(type="text/javascript", src="js/lib/jquery-2.1.4.min.js")
-    script(type="text/javascript", src="js/lib/less.min.js")
-    script(type="text/javascript", src="js/lib/webcomponents.min.js")
-    script(type="text/javascript", src="js/lib/juicy-ace-editor/ace/src-min-noconflict/ace.js")
-    link(rel="stylesheet", type="text/css", href="css/lib/bootstrap-theme.min.css")
-    link(rel="stylesheet", type="text/css", href="css/lib/bootstrap.min.css")
+    script(type="text/javascript", src="components/webcomponentsjs/webcomponents.min.js")
+    script(type="text/javascript").
+      less = {
+        env: "production", // or "production"
+      };
+    script(type="text/javascript", src="components/less.js/dist/less.js")
+    script(type="text/javascript", src="components/sass.js/dist/sass.js")
+    script(type="text/javascript", src="components/juicy-ace-editor/ace/src-min-noconflict/ace.js")
+    link(rel="stylesheet", type="text/css", href="components/bootstrap/dist/css/bootstrap-theme.min.css")
+    link(rel="stylesheet", type="text/css", href="components/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet", type="text/css", href="css/panel.css")
   body
     div#leftPanel
@@ -26,7 +30,7 @@ html
           select(id="language").form-control
             option(value="css")| CSS
             option(value="less")| LESS
-            //option(value="sass")| SASS
+            option(value="sass")| SASS
             //option(value="staylus")| Staylus
         div.form-group
           a.btn.btn-default#send| Insert
@@ -47,5 +51,5 @@ html
             template
               content
         div.error.hidden
-    script(type="text/javascript", src="js/lib/editor.js")
+    script(type="text/javascript", src="js/editor.js")
     script(type="text/javascript", src="js/panel.js")

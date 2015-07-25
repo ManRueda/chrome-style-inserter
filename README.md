@@ -3,7 +3,13 @@
 With this chrome extension you can add styles dynamically when you debug a site with the dev-tools
 
 ###Versions
-
+* 0.4.0:
+    * Update LESS
+    * Change local code to bower components
+    * Add SASS support
+    * Minor JS changes
+    * New error alert
+    * New build system, better compress!
 * 0.3.8:
     * Error fixes
 
